@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cargo Nusantara</title>
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="css/gaya.css" />
+	</head>
+	<body>
+		<div id="snackbar">Selamat Bergabung, Akung Telah Dibuat</div>
+		<div class="login-signup">
+			<h2>Sign Up</h2>
+			<form id="registerForm" onsubmit="handleRegister(event)">
+				<input
+					placeholder="Username"
+					type="text"
+					id="username"
+					name="username"
+				/>
+				<input placeholder="Email" type="email" />
+				<input
+					placeholder="Password"
+					type="password"
+					name="password"
+					id="password"
+					onkeyup="return validatepw()"
+				/>
+				<div class="error">
+					<ul>
+						<li id="length">Atleast 8 Character</li>
+						<li id="upper">Atleast one uppercase letter</li>
+						<li id="lower">Atleast one lowercase letter</li>
+						<li id="number">Atleast one number (0-9)</li>
+					</ul>
+				</div>
+				<input
+					type="password"
+					name="pass"
+					id="pass"
+					class="form-control"
+					placeholder=" Confirm Password"
+					onkeyup="return conformpw()"
+				/>
+				<button type="submit">Sign Up</button>
+			</form>
+		</div>
+
+		<script>
+			function minnum() {
+				var num = document.getElementById("password");
+				if (num.value.length > input.maxlength) {
+					input.value.slice(0, input.maxlength);
+				}
+			}
+		</script>
+		<script>
+			function validatepw() {
+				var password = document.getElementById("password");
+				var upper = document.getElementById("upper");
+				var lower = document.getElementById("lower");
+				var num = document.getElementById("number");
+				var len = document.getElementById("length");
+
+				if (password.value.match(/[0-9]/)) {
+					num.style.color = "lightgreen";
+				} else {
+					num.style.color = "red";
+				}
+
+				if (password.value.match(/[A-Z]/)) {
+					upper.style.color = "lightgreen";
+				} else {
+					upper.style.color = "red";
+				}
+
+				if (password.value.match(/[a-z]/)) {
+					lower.style.color = "lightgreen";
+				} else {
+					lower.style.color = "red";
+				}
+
+				if (password.value.length > 8) {
+					len.style.color = "lightgreen";
+				} else {
+					len.style.color = "red";
+				}
+			}
+		</script>
+		<script>
+			function conformpw() {
+				var password = document.getElementById("password");
+				var password2 = document.getElementById("pass");
+
+				if (password.value.match(password2)) {
+					document.getElementById("upper").style.display = "none";
+					document.getElementById("lower").style.display = "none";
+					document.getElementById("number").style.display = "none";
+					document.getElementById("length").style.display = "none";
+				} else {
+					document.getElementById("upper").style.display = "block";
+					document.getElementById("lower").style.display = "block";
+					document.getElementById("number").style.display = "block";
+					document.getElementById("length").style.display = "block";
+				}
+			}
+		</script>
+		<script>
+			function validnum() {
+				var nama = document.getElementById("nama");
+				var password = document.getElementById("password");
+
+				if (nama.value.match(/[0-9]/)) {
+					alert("A name should not have number!");
+					return false;
+				}
+
+				if (password.value.match(/[0-9]/)) {
+				} else {
+					alert("Password should contain atleast 1 number!");
+					return false;
+				}
+
+				if (password.value.match(/[A-Z]/)) {
+				} else {
+					alert("Password should contain atleast 1 uppercase letter");
+					return false;
+				}
+
+				if (password.value.match(/[a-z]/)) {
+				} else {
+					alert("Password should contain atleast 1 lowercase letter");
+					return false;
+				}
+
+				if (password.value.length < 8) {
+					alert("Password should be atleast 8 character");
+					return false;
+				}
+
+				return true;
+			}
+		</script>
+		<script>
+			function myFunction() {
+				var x = document.getElementById("snackbar");
+				x.className = "show";
+				setTimeout(function () {
+					x.className = x.className.replace("show", "");
+				}, 3000);
+			}
+		</script>
+		<script>
+			// Handle register form submission
+			function handleRegister(event) {
+				event.preventDefault(); // Prevent form submission
+
+				// Get the values from input fields
+				const username = document.getElementById("username").value;
+				const password = document.getElementById("password").value;
+
+				// Save the new user details in localStorage
+				localStorage.setItem("registeredUsername", username);
+				localStorage.setItem("registeredPassword", password);
+
+				// Show success message
+				alert("Registrasi berhasil! Silakan login.");
+
+				// Redirect to login page
+				window.location.href = "login.html";
+			}
+		</script>
+	</body>
+</html>
